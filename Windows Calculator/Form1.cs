@@ -88,6 +88,7 @@ namespace Windows_Calculator
             {
                 function = "+";
                 lblequation.Text = txtcurrent.Text + function;
+                txtcurrent.Clear();
             }
             else
             {
@@ -101,6 +102,7 @@ namespace Windows_Calculator
             {
                 function = "-";
                 lblequation.Text = txtcurrent.Text + function;
+                txtcurrent.Clear();
             }
             else
             {
@@ -114,11 +116,25 @@ namespace Windows_Calculator
             {
                 function = "*";
                 lblequation.Text = txtcurrent.Text + function;
+                txtcurrent.Clear();
             }
             else
             {
                 txtcurrent.Text = "ERROR";
             }
+        }
+
+        private void btnclear_Click(object sender, EventArgs e)
+        {
+            txtcurrent.Clear();
+        }
+
+        private void btnclearall_Click(object sender, EventArgs e)
+        {
+            txtcurrent.Clear();
+            first = second = answer = 0;
+            lblequation.Text = "";
+            function = "";
         }
 
         private void btndivision_Click(object sender, EventArgs e)
@@ -127,6 +143,7 @@ namespace Windows_Calculator
             {
                 function = "/";
                 lblequation.Text = txtcurrent.Text + function;
+                txtcurrent.Clear();
             }
             else
             {
@@ -136,15 +153,37 @@ namespace Windows_Calculator
 
         private void btnequal_Click(object sender, EventArgs e)
         {
-            if (Double.TryParse(txtcurrent.Text, out first))
+            if(Double.TryParse(txtcurrent.Text, out second))
             {
-                function = "=";
-                lblequation.Text = txtcurrent.Text + function;
+                if (function == "+")
+                {
+                    answer = first + second;
+                }
+                else if(function == "-")
+                {
+                    answer = first + second;
+                }
+                else if (function == "*")
+                {
+                    answer = first + second;
+                }
+                else if (function == "/")
+                {
+                    answer = first + second;
+                }
+                else
+                {
+                    txtcurrent.Text = "ERROR";
+                }
+                txtcurrent.Text = "" + answer;
+                lblequation.Text = lblequation.Text + second + "=";
             }
             else
             {
                 txtcurrent.Text = "ERROR";
             }
+
+            
         }
     }
 }
