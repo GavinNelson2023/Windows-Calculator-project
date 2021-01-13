@@ -14,7 +14,8 @@ namespace Windows_Calculator
     {
         double first, second, answer;
         string function;
-
+        Class1 head;
+        Class1 current;
 
         public Form1()
         {
@@ -24,6 +25,8 @@ namespace Windows_Calculator
         private void Form1_Load(object sender, EventArgs e)
         {
             lblequation.Text = "";
+            head = new Class1();
+            current = head;
 
         }
 
@@ -86,9 +89,9 @@ namespace Windows_Calculator
         {
             if(Double.TryParse(txtcurrent.Text, out first))
             {
-                function = "+";
-                lblequation.Text = txtcurrent.Text + function;
+                addtolist(first, "+");
                 txtcurrent.Clear();
+                printlist();
             }
             else
             {
@@ -100,9 +103,9 @@ namespace Windows_Calculator
         {
             if (Double.TryParse(txtcurrent.Text, out first))
             {
-                function = "-";
-                lblequation.Text = txtcurrent.Text + function;
+                addtolist(first, "-");
                 txtcurrent.Clear();
+                printlist();
             }
             else
             {
@@ -114,9 +117,9 @@ namespace Windows_Calculator
         {
             if (Double.TryParse(txtcurrent.Text, out first))
             {
-                function = "*";
-                lblequation.Text = txtcurrent.Text + function;
+                addtolist(first, "*");
                 txtcurrent.Clear();
+                printlist();
             }
             else
             {
@@ -141,9 +144,9 @@ namespace Windows_Calculator
         {
             if (Double.TryParse(txtcurrent.Text, out first))
             {
-                function = "/";
-                lblequation.Text = txtcurrent.Text + function;
+                addtolist(first, "/");
                 txtcurrent.Clear();
+                printlist();
             }
             else
             {
@@ -184,6 +187,41 @@ namespace Windows_Calculator
             }
 
             
+        }
+
+        private void addtolist(double x, string s)
+        {
+            current.number = x;
+            curent.n = true;
+            current.s = false;
+            current = current.next;
+            current = new Class1();
+            current.symbol = s;
+            current.s = true;
+            curent.n = false;
+            current = current.next;
+            current = new Class1();
+        }
+
+        private void printlist()
+        {
+            Class1 print = head;
+            string temp = "";
+            do
+            {
+                if(print.n)
+                {
+                    temp = temp + print.number
+                }
+                else
+                {
+                    temp = temp + print.symbol;
+                }
+
+                print = print.next;
+            } while(print != current);
+
+
         }
     }
 }
