@@ -8,16 +8,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-public class Class1
+namespace Windows_Calculator
 {
-	public Class1 previous;
-	public Class1 next;
-	public double number;
-	public string symbol;
-	public bool n;
-	public bool s;
-	public Class1()
-	{
 
+	
+	class Class1
+    {
+		public Class1 prev;
+		public Class1 next;
+		public double number;
+		public string symbol;
+		public bool n;
+		public bool s;
 	}
 }

@@ -25,7 +25,7 @@ namespace Windows_Calculator
         private void Form1_Load(object sender, EventArgs e)
         {
             lblequation.Text = "";
-            head = new Class1();
+            head = null;
             current = head;
 
         }
@@ -87,44 +87,23 @@ namespace Windows_Calculator
 
         private void btnplus_Click(object sender, EventArgs e)
         {
-            if(Double.TryParse(txtcurrent.Text, out first))
-            {
-                addtolist(first, "+");
-                txtcurrent.Clear();
-                printlist();
-            }
-            else
-            {
-                txtcurrent.Text = "ERROR";
-            }
+            addtolist("+");
+            printlist();
+            txtcurrent.Clear();
         }
 
         private void btnsubtract_Click(object sender, EventArgs e)
         {
-            if (Double.TryParse(txtcurrent.Text, out first))
-            {
-                addtolist(first, "-");
-                txtcurrent.Clear();
-                printlist();
-            }
-            else
-            {
-                txtcurrent.Text = "ERROR";
-            }
+            addtolist("-");
+            printlist();
+            txtcurrent.Clear();
         }
 
         private void btnmultiplication_Click(object sender, EventArgs e)
         {
-            if (Double.TryParse(txtcurrent.Text, out first))
-            {
-                addtolist(first, "*");
-                txtcurrent.Clear();
-                printlist();
-            }
-            else
-            {
-                txtcurrent.Text = "ERROR";
-            }
+            addtolist("*");
+            printlist();
+            txtcurrent.Clear();
         }
 
         private void btnclear_Click(object sender, EventArgs e)
@@ -142,16 +121,9 @@ namespace Windows_Calculator
 
         private void btndivision_Click(object sender, EventArgs e)
         {
-            if (Double.TryParse(txtcurrent.Text, out first))
-            {
-                addtolist(first, "/");
-                txtcurrent.Clear();
-                printlist();
-            }
-            else
-            {
-                txtcurrent.Text = "ERROR";
-            }
+            addtolist("/");
+            printlist();
+            txtcurrent.Clear();
         }
 
         private void btnequal_Click(object sender, EventArgs e)
@@ -189,29 +161,57 @@ namespace Windows_Calculator
             
         }
 
-        private void addtolist(double x, string s)
+        private void addtolist(string s)
         {
-            current.number = x;
-            curent.n = true;
-            current.s = false;
-            current = current.next;
-            current = new Class1();
-            current.symbol = s;
-            current.s = true;
-            curent.n = false;
-            current = current.next;
-            current = new Class1();
+            if(Double.TryParse(txtcurrent.Text, out first))
+            {
+                if(head == null)
+                {
+                    head = new Class1();
+                    current = head;
+                    current.number = first;
+                    current.n = true;
+                    if(s != "=")
+                    {
+                        current.next = new Class1();
+                        current = current.next;
+                        current.symbol = s;
+                        current.n = false;
+                        current.next = null;
+                    }
+                }
+                else
+                {
+                    current.next = new Class1();
+                    current = current.next;
+                    current.number = first;
+                    current.n = true;
+                    if (s != "=")
+                    {
+                        current.next = new Class1();
+                        current = current.next;
+                        current.symbol = s;
+                        current.n = false;
+                        current.next = null;
+                    }
+                }
+            }
+            else
+            {
+                lblequation.Text = "ERROR";
+                txtcurrent.Clear();
+            }
         }
 
         private void printlist()
         {
             Class1 print = head;
             string temp = "";
-            do
+            while(print != null)
             {
                 if(print.n)
                 {
-                    temp = temp + print.number
+                    temp = temp + print.number;
                 }
                 else
                 {
@@ -219,9 +219,9 @@ namespace Windows_Calculator
                 }
 
                 print = print.next;
-            } while(print != current);
+            }
 
-
+            lblequation.Text = temp;
         }
     }
 }
