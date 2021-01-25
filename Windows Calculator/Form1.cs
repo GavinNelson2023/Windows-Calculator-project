@@ -117,6 +117,8 @@ namespace Windows_Calculator
             first = second = answer = 0;
             lblequation.Text = "";
             function = "";
+            head = null;
+            current = null;
         }
 
         private void btndivision_Click(object sender, EventArgs e)
@@ -128,50 +130,30 @@ namespace Windows_Calculator
 
         private void btnequal_Click(object sender, EventArgs e)
         {
-            if(Double.TryParse(txtcurrent.Text, out second))
+            if (Double.TryParse(txtcurrent.Text, out second))
             {
-                if (function == "+")
-                {
-                    answer = first + second;
-                }
-                else if(function == "-")
-                {
-                    answer = first + second;
-                }
-                else if (function == "*")
-                {
-                    answer = first + second;
-                }
-                else if (function == "/")
-                {
-                    answer = first + second;
-                }
-                else
-                {
-                    txtcurrent.Text = "ERROR";
-                }
-                txtcurrent.Text = "" + answer;
-                lblequation.Text = lblequation.Text + second + "=";
+                answer = calculate();
             }
             else
             {
                 txtcurrent.Text = "ERROR";
+                lblequation.Text = "";
             }
 
-            
+
         }
 
         private void addtolist(string s)
         {
-            if(Double.TryParse(txtcurrent.Text, out first))
+            if (Double.TryParse(txtcurrent.Text, out first))
             {
-                if(head == null)
+                if (head == null)
                 {
                     head = new Class1();
                     current = head;
                     current.number = first;
                     current.n = true;
-                    if(s != "=")
+                    if (s != "=")
                     {
                         current.next = new Class1();
                         current = current.next;
@@ -207,9 +189,9 @@ namespace Windows_Calculator
         {
             Class1 print = head;
             string temp = "";
-            while(print != null)
+            while (print != null)
             {
-                if(print.n)
+                if (print.n)
                 {
                     temp = temp + print.number;
                 }
@@ -222,6 +204,15 @@ namespace Windows_Calculator
             }
 
             lblequation.Text = temp;
+        }
+
+        static double calculate()
+        {
+            double a = 0;
+
+
+            return a;
+
         }
     }
 }
