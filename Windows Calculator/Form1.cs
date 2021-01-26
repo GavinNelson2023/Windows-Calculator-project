@@ -133,6 +133,8 @@ namespace Windows_Calculator
             if (Double.TryParse(txtcurrent.Text, out second))
             {
                 answer = calculate();
+                txtcurrent.Text = "" + answer;
+                lblequation.Text = lblequation.Text + second + "=";
             }
             else
             {
@@ -206,13 +208,102 @@ namespace Windows_Calculator
             lblequation.Text = temp;
         }
 
-        static double calculate()
+        private double calculate()
         {
             double a = 0;
+            multiply();
+            divide();
+            add();
+            subtract();
 
-
-            return a;
+            return head.number;
 
         }
+
+        private void multiply()
+        {
+            Class1 m = head;
+            Class1 temp;
+
+            while(m.next != null)
+            {
+                if(m.next.symbol == "*")
+                {
+                    double answer = m.number * m.next.next.number;
+                    temp = m.next.next.next;
+                    m.next = temp;
+                    m.number = answer;
+                }
+
+                m = m.next;
+
+            }
+
+        }
+
+        private void divide()
+        {
+            Class1 d = head;
+            Class1 temp;
+
+            while (d.next != null)
+            {
+                if (d.next.symbol == "/")
+                {
+                    double answer = d.number / d.next.next.number;
+                    temp = d.next.next.next;
+                    d.next = temp;
+                    d.number = answer;
+                }
+
+                d = d.next;
+
+            }
+
+        }
+
+        private void add()
+        {
+            Class1 a = head;
+            Class1 temp;
+
+            while (a.next != null)
+            {
+                if (a.next.symbol == "+")
+                {
+                    double answer = a.number + a.next.next.number;
+                    temp = a.next.next.next;
+                    a.next = temp;
+                    a.number = answer;
+                }
+
+                a = a.next;
+
+            }
+
+        }
+
+        private void subtract()
+        {
+            Class1 s = head;
+            Class1 temp;
+
+            while (s.next != null)
+            {
+                if (s.next.symbol == "-")
+                {
+                    double answer = s.number - s.next.next.number;
+                    temp = s.next.next.next;
+                    s.next = temp;
+                    s.number = answer;
+                }
+
+                s = s.next;
+
+            }
+
+        }
+
+
     }
 }
