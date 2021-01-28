@@ -130,18 +130,11 @@ namespace Windows_Calculator
 
         private void btnequal_Click(object sender, EventArgs e)
         {
-            if (Double.TryParse(txtcurrent.Text, out second))
-            {
-                answer = calculate();
-                txtcurrent.Text = "" + answer;
-                lblequation.Text = lblequation.Text + second + "=";
-            }
-            else
-            {
-                txtcurrent.Text = "ERROR";
-                lblequation.Text = "";
-            }
-
+            addtolist("=");
+            printlist();
+            txtcurrent.Clear();
+            double answer = calculate();
+            txtcurrent.Text = "" + answer;
 
         }
 
@@ -155,14 +148,12 @@ namespace Windows_Calculator
                     current = head;
                     current.number = first;
                     current.n = true;
-                    if (s != "=")
-                    {
-                        current.next = new Class1();
-                        current = current.next;
-                        current.symbol = s;
-                        current.n = false;
-                        current.next = null;
-                    }
+
+                    current.next = new Class1();
+                    current = current.next;
+                    current.symbol = s;
+                    current.n = false;
+                    current.next = null;
                 }
                 else
                 {
@@ -170,14 +161,12 @@ namespace Windows_Calculator
                     current = current.next;
                     current.number = first;
                     current.n = true;
-                    if (s != "=")
-                    {
-                        current.next = new Class1();
-                        current = current.next;
-                        current.symbol = s;
-                        current.n = false;
-                        current.next = null;
-                    }
+
+                    current.next = new Class1();
+                    current = current.next;
+                    current.symbol = s;
+                    current.n = false;
+                    current.next = null;
                 }
             }
             else
@@ -225,7 +214,7 @@ namespace Windows_Calculator
             Class1 m = head;
             Class1 temp;
 
-            while(m.next != null)
+            while(m.symbol != "=")
             {
                 if(m.next.symbol == "*")
                 {
@@ -246,7 +235,7 @@ namespace Windows_Calculator
             Class1 d = head;
             Class1 temp;
 
-            while (d.next != null)
+            while (d.symbol != "=")
             {
                 if (d.next.symbol == "/")
                 {
@@ -267,7 +256,7 @@ namespace Windows_Calculator
             Class1 a = head;
             Class1 temp;
 
-            while (a.next != null)
+            while (a.symbol != "=")
             {
                 if (a.next.symbol == "+")
                 {
@@ -288,7 +277,7 @@ namespace Windows_Calculator
             Class1 s = head;
             Class1 temp;
 
-            while (s.next != null)
+            while (s.symbol != "=")
             {
                 if (s.next.symbol == "-")
                 {
