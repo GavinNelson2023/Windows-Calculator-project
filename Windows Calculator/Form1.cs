@@ -223,8 +223,10 @@ namespace Windows_Calculator
                     m.next = temp;
                     m.number = answer;
                 }
-
-                m = m.next;
+                else
+                {
+                    m = m.next;
+                }
 
             }
 
@@ -244,10 +246,17 @@ namespace Windows_Calculator
                     d.next = temp;
                     d.number = answer;
                 }
-
-                d = d.next;
+                else
+                {
+                    d = d.next;
+                }
 
             }
+
+        }
+
+        private void Form1_KeyPress(object sender, KeyPressEventArgs e)
+        {
 
         }
 
@@ -265,8 +274,11 @@ namespace Windows_Calculator
                     a.next = temp;
                     a.number = answer;
                 }
-
-                a = a.next;
+                else
+                {
+                    a = a.next;
+                }
+                
 
             }
 
@@ -286,8 +298,10 @@ namespace Windows_Calculator
                     s.next = temp;
                     s.number = answer;
                 }
-
-                s = s.next;
+                else
+                {
+                    s = s.next;
+                }
 
             }
 
