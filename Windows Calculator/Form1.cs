@@ -32,56 +32,100 @@ namespace Windows_Calculator
 
         private void btn1_Click(object sender, EventArgs e)
         {
+            if (txtcurrent.Text == "ERROR")
+            {
+                txtcurrent.Clear();
+            }
             txtcurrent.Text = txtcurrent.Text + 1;
         }
 
         private void btn2_Click(object sender, EventArgs e)
         {
+            if (txtcurrent.Text == "ERROR")
+            {
+                txtcurrent.Clear();
+            }
             txtcurrent.Text = txtcurrent.Text + 2;
         }
 
         private void btn3_Click(object sender, EventArgs e)
         {
+            if (txtcurrent.Text == "ERROR")
+            {
+                txtcurrent.Clear();
+            }
             txtcurrent.Text = txtcurrent.Text + 3;
         }
 
         private void btn4_Click(object sender, EventArgs e)
         {
+            if (txtcurrent.Text == "ERROR")
+            {
+                txtcurrent.Clear();
+            }
             txtcurrent.Text = txtcurrent.Text + 4;
         }
 
         private void btn5_Click(object sender, EventArgs e)
         {
+            if (txtcurrent.Text == "ERROR")
+            {
+                txtcurrent.Clear();
+            }
             txtcurrent.Text = txtcurrent.Text + 5;
         }
 
         private void btn6_Click(object sender, EventArgs e)
         {
+            if (txtcurrent.Text == "ERROR")
+            {
+                txtcurrent.Clear();
+            }
             txtcurrent.Text = txtcurrent.Text + 6;
         }
 
         private void btn7_Click(object sender, EventArgs e)
         {
+            if (txtcurrent.Text == "ERROR")
+            {
+                txtcurrent.Clear();
+            }
             txtcurrent.Text = txtcurrent.Text + 7;
         }
 
         private void btn8_Click(object sender, EventArgs e)
         {
+            if (txtcurrent.Text == "ERROR")
+            {
+                txtcurrent.Clear();
+            }
             txtcurrent.Text = txtcurrent.Text + 8;
         }
 
         private void btn9_Click(object sender, EventArgs e)
         {
+            if (txtcurrent.Text == "ERROR")
+            {
+                txtcurrent.Clear();
+            }
             txtcurrent.Text = txtcurrent.Text + 9;
         }
 
         private void btn10_Click(object sender, EventArgs e)
         {
+            if (txtcurrent.Text == "ERROR")
+            {
+                txtcurrent.Clear();
+            }
             txtcurrent.Text = txtcurrent.Text + 0;
         }
 
         private void btn11_Click(object sender, EventArgs e)
         {
+            if(txtcurrent.Text == "ERROR")
+            {
+                txtcurrent.Clear();
+            }
             txtcurrent.Text = txtcurrent.Text + ".";
         }
 
@@ -257,7 +301,30 @@ namespace Windows_Calculator
 
         private void Form1_KeyPress(object sender, KeyPressEventArgs e)
         {
-
+            char p = e.KeyChar;
+            if(p == '1' || p == '2' || p == '3' || p == '4' || p == '5' || p == '6' || p == '7' || p == '8' || p == '9' || p == '0')
+            {
+                if (txtcurrent.Text == "ERROR")
+                {
+                    txtcurrent.Clear();
+                }
+                txtcurrent.Text = txtcurrent.Text + p;
+            }
+            else if (p == '+' || p == '-' || p == '/' || p == '*')
+            {
+                string s = "" + p;
+                addtolist(s);
+                printlist();
+                txtcurrent.Clear();
+            }
+            else if (p == (char)Keys.Enter)
+            {
+                addtolist("=");
+                printlist();
+                txtcurrent.Clear();
+                double answer = calculate();
+                txtcurrent.Text = "" + answer;
+            }
         }
 
         private void add()
