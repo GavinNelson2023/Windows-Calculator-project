@@ -27,7 +27,7 @@ namespace Windows_Calculator
             lblequation.Text = "";
             head = null;
             current = head;
-
+            this.KeyPreview = true;
         }
 
         private void btn1_Click(object sender, EventArgs e)
