@@ -28,6 +28,9 @@ namespace Windows_Calculator
             head = null;
             current = head;
             this.KeyPreview = true;
+
+            btnequal.Focus();
+            btnequal.Select();
         }
 
         private void btn1_Click(object sender, EventArgs e)
